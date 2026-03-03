@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Paul Bosmans — Portfolio</title>
+  <meta name="description" content="Portfolio of Paul Bosmans — Microtechnology engineer focused on mechanical design, rapid prototyping, and industrialization." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="layout">
+    <!-- MAIN CONTENT -->
+    <main class="content" id="top">
+
+      <!-- HERO -->
+      <header class="card hero">
+        <div class="hero-left">
+          <div class="kicker">Microtechnology Engineer · Mechanical Design · Rapid Prototyping · Industrialization</div>
+          <h1>Paul Bosmans</h1>
+          <div class="quick" id="quickInfo"></div>
+        </div>
+
+        <div class="hero-right">
+          <figure class="avatar" aria-label="Portrait">
+            <img src="assets/paul.jpg" alt="Paul Bosmans portrait"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="avatar-fallback" style="display:none;">
+              Place your portrait at<br><b>assets/paul.jpg</b>
+            </div>
+          </figure>
+        </div>
+
+        <div class="hero-embedded">
+          <div class="hero-block" id="summary">
+            <h2>Summary</h2>
+            <p class="p" id="summaryText"></p>
+          </div>
+
+          <div class="hero-block" id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid" id="skillsGrid"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- GALLERY / CAROUSEL -->
+      <section class="card section" id="gallery">
+        <div class="section-head">
+          <h2>Project Gallery</h2>
+        </div>
+
+        <div class="carousel" aria-label="Project images carousel">
+          <div class="carousel-main">
+            <button class="c-btn" id="cPrev" aria-label="Previous image">‹</button>
+
+            <figure class="c-frame">
+              <img id="cImage" alt="Project image" />
+              <div class="c-fallback" id="cFallback" style="display:none;">
+                No image to display. Check your list in <code>js/data.js</code>.
+              </div>
+            </figure>
+
+            <button class="c-btn" id="cNext" aria-label="Next image">›</button>
+          </div>
+
+          <div class="carousel-meta">
+            <div class="c-dots" id="cDots" aria-label="Carousel position"></div>
+          </div>
+
+          <div class="c-thumbs" id="cThumbs" aria-label="Carousel thumbnails"></div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="card section" id="projects">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <p>Drone R&amp;D · Industrialization · Product</p>
+        </div>
+
+        <div class="grid" id="projectsGrid"></div>
+
+        <p class="note" id="projectsNote"></p>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="card section" id="contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Fast & direct</p>
+        </div>
+
+        <p class="p" id="contactIntro"></p>
+        <div class="actions" style="margin-top:10px;" id="contactActions"></div>
+
+        <footer class="footer">© <span id="year"></span> Paul Bosmans · Portfolio</footer>
+      </section>
+    </main>
+
+    <!-- RIGHT SIDEBAR MENU -->
+    <aside class="sidebar card" aria-label="Right navigation">
+      <div class="side-title">Menu</div>
+      <nav class="nav" id="rightNav">
+        <a href="#top" class="active">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
