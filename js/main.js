@@ -232,15 +232,18 @@
   }
 
   async function discoverMediaInFolder(folderPath){
+    const normalizedFolder = folderPath.endsWith("/") ? folderPath : `${folderPath}/`;
+    const mediaExt = /\.(png|jpe?g|gif|webp|avif|mp4|webm|ogg)$/i;
+
+    const manifestMedia = await discoverMediaFromManifest(normalizedFolder, mediaExt);
+    if (manifestMedia.length) return manifestMedia;
+
     try {
-      const response = await fetch(folderPath);
+      const response = await fetch(normalizedFolder);
       if (!response.ok) return [];
 
       const html = await response.text();
       const links = [...html.matchAll(/href=["']([^"']+)["']/gi)].map(m => m[1]);
-      const mediaExt = /\.(png|jpe?g|gif|webp|avif|mp4|webm|ogg)$/i;
-
-      const normalizedFolder = folderPath.endsWith("/") ? folderPath : `${folderPath}/`;
 
       return links
         .map(link => {
@@ -250,6 +253,25 @@
           return `${normalizedFolder}${fileName}`;
         })
         .filter(Boolean);
+    } catch {
+      return [];
+    }
+  }
+
+  async function discoverMediaFromManifest(folderPath, mediaExt){
+    try {
+      const response = await fetch(`${folderPath}media.json`, { cache: "no-store" });
+      if (!response.ok) return [];
+
+      const payload = await response.json();
+      const files = Array.isArray(payload)
+        ? payload
+        : (Array.isArray(payload?.files) ? payload.files : []);
+
+      return files
+        .map(file => String(file || "").trim())
+        .filter(file => mediaExt.test(file))
+        .map(file => file.includes("/") ? file : `${folderPath}${file}`);
     } catch {
       return [];
     }
