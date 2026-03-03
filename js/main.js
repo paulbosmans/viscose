@@ -1,6 +1,7 @@
 (() => {
   const D = window.PORTFOLIO;
   if (!D) return;
+  const lightbox = setupLightbox();
 
   // Year
   const yearEl = document.getElementById("year");
@@ -196,6 +197,7 @@
         videoEl.muted = true;
         videoEl.defaultMuted = true;
         videoEl.src = path;
+        imageEl.onclick = null;
         videoEl.onerror = () => {
           videoEl.style.display = "none";
           fallbackEl.style.display = "flex";
@@ -204,6 +206,7 @@
       } else {
         imageEl.style.display = "block";
         imageEl.src = path;
+        imageEl.onclick = () => lightbox.open(path);
         imageEl.onerror = () => {
           imageEl.style.display = "none";
           fallbackEl.style.display = "flex";
@@ -327,6 +330,37 @@
 
   function isVideoPath(path){
     return /\.(mp4|webm|ogg)$/i.test(String(path));
+  }
+
+  function setupLightbox(){
+    const root = document.getElementById("mediaLightbox");
+    const backdrop = document.getElementById("lightboxBackdrop");
+    const closeBtn = document.getElementById("lightboxClose");
+    const image = document.getElementById("lightboxImage");
+
+    if (!root || !backdrop || !closeBtn || !image) {
+      return { open: () => {}, close: () => {} };
+    }
+
+    const close = () => {
+      root.classList.remove("open");
+      root.setAttribute("aria-hidden", "true");
+      image.removeAttribute("src");
+    };
+
+    const open = (src) => {
+      image.src = src;
+      root.classList.add("open");
+      root.setAttribute("aria-hidden", "false");
+    };
+
+    backdrop.addEventListener("click", close);
+    closeBtn.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && root.classList.contains("open")) close();
+    });
+
+    return { open, close };
   }
 
   function escapeHtml(str){
