@@ -77,6 +77,7 @@ window.PORTFOLIO = {
           "Integration constraints: envelope, assembly, and operational handling",
         ],
         tags: ["Product Design", "Serviceability", "Prototyping", "Field UX"],
+        mediaFolder: "elios3-cleaning",
         media: "assets/projects/elios3-cleaning.jpg",
         links: [
           { label: "Public: Cleaning guidance", url: "https://www.flyability.com/knowledge-base/cleaning-elios" },
