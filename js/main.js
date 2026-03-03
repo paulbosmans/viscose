@@ -164,7 +164,9 @@
       ? project.media
       : (project.media ? [project.media] : []);
 
-    const mediaList = discovered.length ? discovered : fallbackMedia;
+    const folderCandidates = buildFolderCandidates(folderName, fallbackMedia, project.mediaFiles);
+    const candidateMedia = discovered.length ? discovered : [...folderCandidates, ...fallbackMedia];
+    const mediaList = await filterExistingMedia(candidateMedia);
 
     if (!mediaList.length){
       imageEl.style.display = "none";
@@ -250,6 +252,54 @@
         .filter(Boolean);
     } catch {
       return [];
+    }
+  }
+
+  function buildFolderCandidates(folderName, configuredMedia, mediaFiles){
+    if (!folderName) return [];
+
+    const normalizedFolder = `assets/projects/${folderName}/`;
+    const mediaExt = /\.(png|jpe?g|gif|webp|avif|mp4|webm|ogg)$/i;
+
+    const fromConfigured = (configuredMedia || []).map(path => {
+      const raw = String(path || "").split("?")[0].split("#")[0];
+      const fileName = raw.split("/").pop() || "";
+      return fileName ? `${normalizedFolder}${fileName}` : null;
+    });
+
+    const fromMediaFiles = (Array.isArray(mediaFiles) ? mediaFiles : []).map(file => {
+      const clean = String(file || "").trim();
+      if (!clean) return null;
+      return clean.includes("/") ? clean : `${normalizedFolder}${clean}`;
+    });
+
+    const merged = [...fromConfigured, ...fromMediaFiles].filter(path => mediaExt.test(String(path || "")));
+    return Array.from(new Set(merged));
+  }
+
+  async function filterExistingMedia(paths){
+    const unique = Array.from(new Set((paths || []).map(p => String(p || "").trim()).filter(Boolean)));
+    if (!unique.length) return [];
+
+    const checks = await Promise.all(unique.map(async (path) => ({ path, ok: await checkMediaExists(path) })));
+    const existing = checks.filter(item => item.ok).map(item => item.path);
+
+    return existing.length ? existing : unique;
+  }
+
+  async function checkMediaExists(path){
+    try {
+      const head = await fetch(path, { method: "HEAD" });
+      if (head.ok) return true;
+
+      if (head.status === 403 || head.status === 405) {
+        const get = await fetch(path, { method: "GET", cache: "no-store" });
+        return get.ok;
+      }
+
+      return false;
+    } catch {
+      return false;
     }
   }
 
