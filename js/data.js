@@ -1,13 +1,13 @@
 window.PORTFOLIO = {
   person: {
     name: "Paul Bosmans",
-    location: "Switzerland (Vaud)",
-    languagesQuick: "French / English / German",
+    location: "Ollon VD",
+    languagesQuick: "French native, English C1",
     availability: "Full-time / Contract",
     email: "paul.bosmans@proton.me",
     phone: "+41 76 366 28 58",
     address: "Route de la distillerie 28, 1867 Ollon",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/paul-bosmans",
     github: "#",
     cvPdf: "CV_Paul_Bosmans.pdf",
   },
@@ -20,7 +20,7 @@ window.PORTFOLIO = {
 
   summary: {
     text:
-      "I help teams ship reliable hardware by combining mechanical design, rapid prototyping, and industrialization. I’m comfortable with constrained systems (mass, durability, integration, assembly) and precision products (tight tolerances, documentation, regulatory constraints).",
+      "Mechanical engineer with a Master’s degree in Micro-Engineering and extensive experience in product development, prototyping, and industrialization. I support projects from early concept and system architecture through detailed design, testing, and transition to mass production.\n\nMy expertise includes precision mechanical design, tolerance analysis, DFM/DFA, injection molding, CNC machining, sheet metal, and high-performance polymer parts. I also integrate electronic components into mechanical systems, including PCB integration, enclosure design, thermal considerations, and hands-on soldering and assembly of electronic components.\n\nWith a strong systems-level mindset, I approach each project with a comprehensive understanding of the product as a whole — mechanics, electronics, manufacturability, reliability, and cost optimization. I have led and contributed to projects involving drones, precision measurement instruments, consumer products, and modular systems.\n\nHands-on and solution-oriented, I combine advanced CAD expertise (Creo, Fusion 360), rapid prototyping (SLA/FDM), supplier coordination, electronic integration, and manufacturing optimization to deliver robust, production-ready designs.\n\nI thrive at the intersection of engineering rigor, practical prototyping, and scalable industrial solutions.",
   },
 
   projects: {
@@ -161,6 +161,7 @@ window.PORTFOLIO = {
   gallery: {
     images: [
       "assets/projects/elios3-rad.jpg",
+      "assets/projects/Elios3 cleaning.mp4",
       "assets/projects/elios3-cleaning.jpg",
       "assets/projects/elios2-mfg.jpg",
       "assets/projects/elios3-early.jpg",
@@ -170,8 +171,20 @@ window.PORTFOLIO = {
   },
 
   skills: {
-    software: ["Creo", "SolidWorks", "Fusion 360", "CATIA", "Microsoft Office"],
-    programming: ["C", "C++", "Python", "MATLAB", "LaTeX"],
+    software: [
+      { name: "Creo", level: 80 },
+      { name: "SolidWorks", level: 90 },
+      { name: "Fusion 360", level: 80 },
+      { name: "CATIA", level: 60 },
+      { name: "Microsoft Office", level: 90 }
+    ],
+    programming: [
+      { name: "C", level: 60 },
+      { name: "C++", level: 40 },
+      { name: "Python", level: 60 },
+      { name: "MATLAB", level: 70 },
+      { name: "LaTeX", level: 80 }
+    ],
     strengths: [
       "Rapid prototyping (FDM/SLA), machining, assembly, experimental validation",
       "Design for manufacturing and injection molding optimization",
