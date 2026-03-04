@@ -198,18 +198,18 @@ window.PORTFOLIO = {
 
   skills: {
     software: [
-      { name: "Creo", level: 80 },
+      { name: "Creo", level: 70 },
       { name: "SolidWorks", level: 90 },
-      { name: "Fusion 360", level: 80 },
-      { name: "CATIA", level: 60 },
-      { name: "Microsoft Office", level: 90 }
+      { name: "Fusion 360", level: 50 },
+      { name: "CATIA", level: 30 },
+      { name: "Microsoft Office", level: 80 }
     ],
     programming: [
-      { name: "C", level: 60 },
-      { name: "C++", level: 40 },
-      { name: "Python", level: 60 },
+      { name: "C", level: 70 },
+      { name: "C++", level: 30 },
+      { name: "Python", level: 50 },
       { name: "MATLAB", level: 70 },
-      { name: "LaTeX", level: 80 }
+      { name: "LaTeX", level: 60 }
     ],
     strengths: [
       "Rapid prototyping (FDM/SLA), machining, assembly, experimental validation",
