@@ -95,7 +95,6 @@
             <div class="skill-level-item">
               <div class="skill-level-head">
                 <span class="skill-name">${escapeHtml(skill.name || "")}</span>
-                <span class="skill-level-value">${level}%</span>
               </div>
               <div class="skill-bar" role="progressbar" aria-valuenow="${level}" aria-valuemin="0" aria-valuemax="100" aria-label="${escapeHtml(skill.name || "Software skill")} level">
                 <span style="width:${level}%"></span>
@@ -115,7 +114,6 @@
             <div class="skill-level-item">
               <div class="skill-level-head">
                 <span class="skill-name">${escapeHtml(skill.name || "")}</span>
-                <span class="skill-level-value">${level}%</span>
               </div>
               <div class="skill-bar" role="progressbar" aria-valuenow="${level}" aria-valuemin="0" aria-valuemax="100" aria-label="${escapeHtml(skill.name || "Programming skill")} level">
                 <span style="width:${level}%"></span>
