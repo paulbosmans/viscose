@@ -31,18 +31,42 @@ window.PORTFOLIO = {
       {
         id: "wip-product",
         category: "Personal Product · Work in Progress",
-        title: "Modular Training Product (Work in Progress)",
+        title: "Modular Training Device (Work in Progress)",
         description:
-          "Ongoing development of a modular physical product intended for skill training. The work emphasizes robust mechanical architecture, repeatable interfaces, and manufacturing-friendly design.",
+          "Development of a modular physical training device designed to improve hand dexterity, grip strength, and fine motor control. The project explores new approaches to physical interaction and skill training through a compact and versatile mechanical system. The device is intended for multiple applications including climbing training, rehabilitation exercises, and general hand coordination development. The work focuses on creating a robust and intuitive object capable of supporting repetitive use while remaining adaptable to different training scenarios.",
         bullets: [
-          "Scope: concept → mechanical architecture → iterative prototyping → refinement for manufacturability",
-          "Focus: robustness, modular interfaces, repeatable assembly, and user-centered constraints",
-          "Status: WIP — no branding and no public media; a confidential image can be added below",
+          "Scope: concept exploration → mechanical architecture → iterative prototyping → user testing → validation and refinement for manufacturability",
+          "Focus: durability, ergonomic interaction, modularity, repeatable assembly, and user-centered design",
+          "Validation: prototypes are evaluated through iterative testing with end users to assess usability, ergonomics, and training effectiveness.",
+          "Status: ongoing development — technical details remain confidential while the product is being refined.",
         ],
-        tags: ["Mechanical Design", "Rapid Iteration", "DFM/DFA", "Product Thinking"],
+        tags: ["Mechanical Design", "Rapid Prototyping", "Product Development", "DFM/DFA", "User Testing", "Human Interaction"],
         // Confidential image placeholder (add this file when ready)
         media: "assets/projects/confidential.jpg",
         confidentialLabel: "CONFIDENTIAL",
+        links: [],
+      },
+
+      {
+        id: "micro-surgery-room",
+        category: "Master in Microengineering · CHUV Collaboration",
+        title: "Micro-Surgery Room — Office Surgery Concept Development",
+        description:
+          "Mechanical concept development of a localized sterile surgical environment designed to enable carpal tunnel surgery outside a traditional operating room. The project was carried out during a Master in Microengineering in collaboration with surgeons from CHUV, within an interdisciplinary medical device development program.",
+        bullets: [
+          "Concept development: localized sterile environment around the surgical site",
+          "Medical device design: mechanical architecture for a compact micro-surgery station",
+          "Process optimization: reduction of preparation time, waste, and operational costs",
+          "Human-centered design: improving patient comfort while maintaining surgical safety",
+          "Objective: support office-based surgery adoption (already established in Canada, still limited in Switzerland)",
+        ],
+        tags: [
+          "Medical Device",
+          "Surgical Environment",
+          "Concept Development",
+          "Healthcare Engineering",
+          "ISO 13485",
+        ],
         links: [],
       },
 
@@ -78,7 +102,8 @@ window.PORTFOLIO = {
         ],
         tags: ["Product Design", "Serviceability", "Prototyping", "Field UX"],
         mediaFolder: "elios3-cleaning",
-        media: "assets/projects/elios3-cleaning.jpg",
+        defaultImage: "1-cleaning.jpg",
+        media: "assets/projects/elios3-cleaning/1-cleaning.jpg",
         links: [
           { label: "Public: Cleaning guidance", url: "https://www.flyability.com/knowledge-base/cleaning-elios" },
         ],

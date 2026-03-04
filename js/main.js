@@ -180,7 +180,7 @@
       return;
     }
 
-    let index = 0;
+    let index = resolveInitialMediaIndex(mediaList, project, folderName);
 
     const render = () => {
       const path = mediaList[index];
@@ -330,6 +330,46 @@
 
   function isVideoPath(path){
     return /\.(mp4|webm|ogg)$/i.test(String(path));
+  }
+
+  function resolveInitialMediaIndex(mediaList, project, folderName){
+    if (!Array.isArray(mediaList) || !mediaList.length) return 0;
+
+    const configuredDefault = String(project?.defaultImage || "").trim();
+    if (configuredDefault) {
+      const defaultCandidates = buildDefaultImageCandidates(configuredDefault, folderName);
+      for (const candidate of defaultCandidates) {
+        const idx = mediaList.findIndex(path => sameMediaPath(path, candidate));
+        if (idx >= 0 && !isVideoPath(mediaList[idx])) return idx;
+      }
+    }
+
+    const firstImageIndex = mediaList.findIndex(path => !isVideoPath(path));
+    return firstImageIndex >= 0 ? firstImageIndex : 0;
+  }
+
+  function buildDefaultImageCandidates(defaultImage, folderName){
+    const clean = String(defaultImage).trim();
+    if (!clean) return [];
+
+    const normalizedFolder = folderName ? `assets/projects/${folderName}/` : "";
+    const fileName = clean.split("/").pop() || "";
+
+    const candidates = [clean];
+    if (normalizedFolder && fileName) candidates.push(`${normalizedFolder}${fileName}`);
+
+    return Array.from(new Set(candidates));
+  }
+
+  function sameMediaPath(a, b){
+    const normalize = (value) => decodeURIComponent(String(value || ""))
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/^\.\//, "")
+      .replace(/\\/g, "/")
+      .toLowerCase();
+
+    return normalize(a) === normalize(b);
   }
 
   function setupLightbox(){
