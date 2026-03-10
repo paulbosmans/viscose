@@ -10,6 +10,16 @@
 </head>
 
 <body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav-inner">
+      <div class="site-nav-links">
+        <a class="site-nav-link active" href="index.html" aria-current="page">Portfolio</a>
+        <a class="site-nav-link" href="prototyping.html">Prototyping Capacity</a>
+        <a class="site-nav-link" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="layout">
     <!-- MAIN CONTENT -->
     <main class="content" id="top">
@@ -31,19 +41,23 @@
             </div>
           </figure>
         </div>
-
-        <div class="hero-embedded">
-          <div class="hero-block" id="summary">
-            <h2>Summary</h2>
-            <div class="p" id="summaryText"></div>
-          </div>
-
-          <div class="hero-block" id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid" id="skillsGrid"></div>
-          </div>
-        </div>
       </header>
+
+      <section class="card section" id="summary">
+        <div class="section-head">
+          <h2>Summary</h2>
+          <p>Profile overview</p>
+        </div>
+        <div class="p" id="summaryText"></div>
+      </section>
+
+      <section class="card section" id="skills">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p>Technical and core strengths</p>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </section>
 
       <!-- PROJECTS -->
       <section class="card section" id="projects">
@@ -57,18 +71,7 @@
         <p class="note" id="projectsNote"></p>
       </section>
 
-      <!-- CONTACT -->
-      <section class="card section" id="contact">
-        <div class="section-head">
-          <h2>Contact</h2>
-          <p>Fast & direct</p>
-        </div>
-
-        <p class="p" id="contactIntro"></p>
-        <div class="actions" style="margin-top:10px;" id="contactActions"></div>
-
-        <footer class="footer">© <span id="year"></span> Paul Bosmans · Portfolio</footer>
-      </section>
+      <footer class="footer">© <span id="year"></span> Paul Bosmans · Portfolio</footer>
     </main>
 
   </div>
@@ -76,8 +79,11 @@
   <div class="lightbox" id="mediaLightbox" aria-hidden="true">
     <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
     <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Media preview">
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
       <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">×</button>
       <img id="lightboxImage" alt="Expanded project media" />
+      <video id="lightboxVideo" controls playsinline style="display:none;"></video>
     </div>
   </div>
 

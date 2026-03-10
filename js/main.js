@@ -2,6 +2,20 @@
   const D = window.PORTFOLIO;
   if (!D) return;
   const lightbox = setupLightbox();
+  let activeCarouselControls = null;
+
+  document.addEventListener("keydown", (event) => {
+    const lightboxRoot = document.getElementById("mediaLightbox");
+    if (lightboxRoot && lightboxRoot.classList.contains("open")) return;
+    if (!activeCarouselControls) return;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      activeCarouselControls.prev();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      activeCarouselControls.next();
+    }
+  });
 
   // Year
   const yearEl = document.getElementById("year");
@@ -46,6 +60,19 @@
 
     const isConfidential = Boolean(p.confidentialLabel);
     const useContainMedia = p.id === "sylvac-p25d";
+    const categoryParts = String(p.category || "")
+      .split("·")
+      .map(part => part.trim())
+      .filter(Boolean);
+    const company = categoryParts[0] || "";
+    const companySlug = company
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    const companyLogoPath = companySlug ? `assets/logos/${companySlug}.png` : "";
+    const companyLogo = companyLogoPath
+      ? `<img class="project-company-logo" src="${escapeHtml(companyLogoPath)}" alt="${escapeHtml(company)} logo" onerror="this.style.display='none';" />`
+      : "";
 
     const mediaBlock = `
       <div class="project-carousel" data-project-id="${escapeHtml(p.id)}" data-project-folder="${escapeHtml(p.mediaFolder || p.id)}">
@@ -62,10 +89,10 @@
     `;
 
     article.innerHTML = `
-      <div class="badge"><span class="dot"></span> ${escapeHtml(p.category)}</div>
+      ${companyLogo ? `<div class="project-logo-line">${companyLogo}</div>` : ""}
+      <h3 class="project-card-title">${escapeHtml(p.title)}</h3>
       <div class="project-body">
         <div class="project-text">
-          <h3>${escapeHtml(p.title)}</h3>
           <p>${escapeHtml(p.description)}</p>
 
           ${bullets ? `<ul class="bullets">${bullets}</ul>` : ""}
@@ -131,19 +158,51 @@
     </div>
   `;
 
-  // Contact
-  document.getElementById("contactIntro").textContent = D.contact.intro;
+  // Prototyping capacity
+  const prototypingGrid = document.getElementById("prototypingGrid");
+  const prototypingNote = document.getElementById("prototypingNote");
+  if (prototypingGrid && D.prototyping && Array.isArray(D.prototyping.items)) {
+    prototypingGrid.innerHTML = D.prototyping.items.map(item => {
+      const sourceList = Array.isArray(item.sources)
+        ? item.sources
+        : (item.source ? [item.source] : []);
 
+      const sourceLinks = sourceList
+        .filter(src => src && src.url)
+        .map(src => `<a class="link" href="${escapeHtml(src.url)}" target="_blank" rel="noopener">${escapeHtml(src.label || "Source")}</a>`)
+        .join("");
+
+      return `
+        <article class="proto-card" id="proto-${escapeHtml(item.id || "item")}">
+          <div class="badge"><span class="dot"></span> ${escapeHtml(item.title || "Capability")}</div>
+          <h3>${escapeHtml(item.tool || "")}</h3>
+          <p>${escapeHtml(item.description || "")}</p>
+          ${sourceLinks ? `<div class="links">${sourceLinks}</div>` : ""}
+        </article>
+      `;
+    }).join("");
+
+    if (prototypingNote) {
+      prototypingNote.textContent = String(D.prototyping.note || "");
+    }
+  }
+
+  // Contact (optional on pages that include contact placeholders)
+  const contactIntro = document.getElementById("contactIntro");
   const contactActions = document.getElementById("contactActions");
-  const linkedinUrl = D.person.linkedin || "#";
-  const linkedinAttrs = linkedinUrl !== "#" ? ' target="_blank" rel="noopener"' : "";
-  contactActions.innerHTML = `
-    <a class="btn primary" href="mailto:${encodeURIComponent(D.person.email)}?subject=Portfolio%20contact%20-%20${encodeURIComponent(D.person.name)}">
-      ${escapeHtml(D.person.email)}
-    </a>
-    <a class="btn primary" href="tel:${escapeHtml(D.person.phone.replace(/\s/g,''))}">${escapeHtml(D.person.phone)}</a>
-    <a class="btn primary" href="${escapeHtml(linkedinUrl)}"${linkedinAttrs}>LinkedIn</a>
-  `;
+  if (contactIntro) contactIntro.textContent = D.contact.intro;
+
+  if (contactActions) {
+    const linkedinUrl = D.person.linkedin || "#";
+    const linkedinAttrs = linkedinUrl !== "#" ? ' target="_blank" rel="noopener"' : "";
+    contactActions.innerHTML = `
+      <a class="btn primary" href="mailto:${encodeURIComponent(D.person.email)}?subject=Portfolio%20contact%20-%20${encodeURIComponent(D.person.name)}">
+        ${escapeHtml(D.person.email)}
+      </a>
+      <a class="btn primary" href="tel:${escapeHtml(D.person.phone.replace(/\s/g,''))}">${escapeHtml(D.person.phone)}</a>
+      <a class="btn primary" href="${escapeHtml(linkedinUrl)}"${linkedinAttrs}>LinkedIn</a>
+    `;
+  }
 
   async function initProjectCarousel(article, project){
     const carousel = article.querySelector(".project-carousel");
@@ -204,7 +263,14 @@
       } else {
         imageEl.style.display = "block";
         imageEl.src = path;
-        imageEl.onclick = () => lightbox.open(path);
+        imageEl.onclick = () => {
+          lightbox.openMediaList(mediaList, index, (selectedIndex) => {
+            if (selectedIndex >= 0 && selectedIndex < mediaList.length) {
+              index = selectedIndex;
+              render();
+            }
+          });
+        };
         imageEl.onerror = () => {
           imageEl.style.display = "none";
           fallbackEl.style.display = "flex";
@@ -222,12 +288,38 @@
       });
     };
 
-    prevBtn.onclick = () => { index = (index - 1 + mediaList.length) % mediaList.length; render(); };
-    nextBtn.onclick = () => { index = (index + 1) % mediaList.length; render(); };
+    const goPrev = () => { index = (index - 1 + mediaList.length) % mediaList.length; render(); };
+    const goNext = () => { index = (index + 1) % mediaList.length; render(); };
+
+    prevBtn.onclick = goPrev;
+    nextBtn.onclick = goNext;
+
+    carousel.addEventListener("mouseenter", () => {
+      if (mediaList.length > 1) {
+        activeCarouselControls = { prev: goPrev, next: goNext };
+      }
+    });
+
+    carousel.addEventListener("mouseleave", () => {
+      if (activeCarouselControls && activeCarouselControls.prev === goPrev) {
+        activeCarouselControls = null;
+      }
+    });
 
     const disabled = mediaList.length <= 1;
-    prevBtn.disabled = disabled;
-    nextBtn.disabled = disabled;
+    if (disabled) {
+      carousel.classList.add("single-media");
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      dotsEl.style.display = "none";
+    } else {
+      carousel.classList.remove("single-media");
+      prevBtn.style.display = "";
+      nextBtn.style.display = "";
+      dotsEl.style.display = "";
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+    }
 
     render();
   }
@@ -374,31 +466,117 @@
     const root = document.getElementById("mediaLightbox");
     const backdrop = document.getElementById("lightboxBackdrop");
     const closeBtn = document.getElementById("lightboxClose");
+    const prevBtn = document.getElementById("lightboxPrev");
+    const nextBtn = document.getElementById("lightboxNext");
     const image = document.getElementById("lightboxImage");
 
-    if (!root || !backdrop || !closeBtn || !image) {
-      return { open: () => {}, close: () => {} };
+    let galleryItems = [];
+    let galleryOriginalIndexes = [];
+    let galleryIndex = 0;
+    let onChange = null;
+
+    if (!root || !backdrop || !closeBtn || !prevBtn || !nextBtn || !image) {
+      return { open: () => {}, openGallery: () => {}, openMediaList: () => {}, close: () => {} };
     }
+
+    const findNextImageIndex = (fromIndex, step) => {
+      const len = galleryItems.length;
+      if (!len) return -1;
+      return (fromIndex + step + len) % len;
+    };
+
+    const renderGallery = () => {
+      if (!galleryItems.length) return;
+      image.src = galleryItems[galleryIndex];
+      const single = galleryItems.length <= 1;
+      prevBtn.classList.toggle("hidden", single);
+      nextBtn.classList.toggle("hidden", single);
+      image.style.cursor = single ? "default" : "ew-resize";
+      if (typeof onChange === "function") {
+        onChange(galleryOriginalIndexes[galleryIndex] ?? galleryIndex, galleryItems[galleryIndex]);
+      }
+    };
+
+    const goPrev = () => {
+      if (galleryItems.length <= 1) return;
+      galleryIndex = findNextImageIndex(galleryIndex, -1);
+      renderGallery();
+    };
+
+    const goNext = () => {
+      if (galleryItems.length <= 1) return;
+      galleryIndex = findNextImageIndex(galleryIndex, 1);
+      renderGallery();
+    };
 
     const close = () => {
       root.classList.remove("open");
       root.setAttribute("aria-hidden", "true");
       image.removeAttribute("src");
+      galleryItems = [];
+      galleryOriginalIndexes = [];
+      galleryIndex = 0;
+      onChange = null;
     };
 
     const open = (src) => {
-      image.src = src;
+      galleryItems = [src];
+      galleryOriginalIndexes = [0];
+      galleryIndex = 0;
+      onChange = null;
+      renderGallery();
       root.classList.add("open");
       root.setAttribute("aria-hidden", "false");
     };
 
+    const openMediaList = (items, startIndex = 0, onMediaChange = null) => {
+      const normalized = Array.isArray(items) ? items.filter(Boolean) : [];
+      if (!normalized.length) return;
+
+      // Keep only images in lightbox gallery, but preserve index mapping to the original carousel list.
+      const imageEntries = normalized
+        .map((item, originalIndex) => ({ item, originalIndex }))
+        .filter(entry => !isVideoPath(entry.item));
+
+      if (!imageEntries.length) return;
+
+      galleryItems = imageEntries.map(entry => entry.item);
+      galleryOriginalIndexes = imageEntries.map(entry => entry.originalIndex);
+
+      const requestedOriginalIndex = Math.max(0, Math.min(Number(startIndex) || 0, normalized.length - 1));
+      const mappedIndex = galleryOriginalIndexes.indexOf(requestedOriginalIndex);
+      galleryIndex = mappedIndex >= 0 ? mappedIndex : 0;
+      onChange = onMediaChange;
+
+      renderGallery();
+      root.classList.add("open");
+      root.setAttribute("aria-hidden", "false");
+    };
+
+    const openGallery = (items, startIndex = 0, onGalleryChange = null) => {
+      openMediaList(items, startIndex, (_index, path) => {
+        if (typeof onGalleryChange === "function") onGalleryChange(path);
+      });
+    };
+
     backdrop.addEventListener("click", close);
     closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", goPrev);
+    nextBtn.addEventListener("click", goNext);
+    image.addEventListener("click", (e) => {
+      if (galleryItems.length <= 1) return;
+      const rect = image.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      if (x < rect.width * 0.5) goPrev();
+      else goNext();
+    });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && root.classList.contains("open")) close();
+      if (e.key === "ArrowLeft" && root.classList.contains("open")) goPrev();
+      if (e.key === "ArrowRight" && root.classList.contains("open")) goNext();
     });
 
-    return { open, close };
+    return { open, openGallery, openMediaList, close };
   }
 
   function escapeHtml(str){

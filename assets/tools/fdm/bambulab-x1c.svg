@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Bambu Lab X1C">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff4e8"/>
+      <stop offset="100%" stop-color="#fffdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="260" y="130" width="680" height="540" rx="22" fill="#ffe8cf" stroke="#ffb56a" stroke-width="4"/>
+  <rect x="320" y="190" width="560" height="360" rx="16" fill="#ffffff" stroke="#ffc88f" stroke-width="3"/>
+  <text x="600" y="100" font-family="Montserrat, Arial, sans-serif" font-size="56" text-anchor="middle" fill="#a85700" font-weight="700">Bambu Lab X1C</text>
+  <text x="600" y="730" font-family="Montserrat, Arial, sans-serif" font-size="42" text-anchor="middle" fill="#b86400" font-weight="700">FDM Printing</text>
+</svg>

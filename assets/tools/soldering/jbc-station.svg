@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="JBC Soldering Station">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9f7ff"/>
+      <stop offset="100%" stop-color="#f8fcff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="220" y="260" width="760" height="280" rx="20" fill="#d6efff" stroke="#6db9e8" stroke-width="4"/>
+  <rect x="300" y="330" width="380" height="120" rx="12" fill="#ffffff" stroke="#89c8ef" stroke-width="3"/>
+  <circle cx="800" cy="390" r="55" fill="#ffffff" stroke="#89c8ef" stroke-width="3"/>
+  <text x="600" y="130" font-family="Montserrat, Arial, sans-serif" font-size="56" text-anchor="middle" fill="#1b5f8a" font-weight="700">JBC Station</text>
+  <text x="600" y="700" font-family="Montserrat, Arial, sans-serif" font-size="42" text-anchor="middle" fill="#2073a6" font-weight="700">Soldering</text>
+</svg>

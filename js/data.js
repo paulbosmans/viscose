@@ -6,7 +6,7 @@ window.PORTFOLIO = {
     availability: "Full-time / Contract",
     email: "paul.bosmans@proton.me",
     phone: "+41 76 366 28 58",
-    address: "Route de la distillerie 28, 1867 Ollon",
+    address: "Ollon",
     linkedin: "https://www.linkedin.com/in/paul-bosmans",
     github: "#",
     cvPdf: "CV_Paul_Bosmans.pdf",
@@ -48,44 +48,39 @@ window.PORTFOLIO = {
       },
 
       {
-        id: "micro-surgery-room",
-        category: "Master in Microengineering · CHUV Collaboration",
-        title: "Micro-Surgery Room — Office Surgery Concept Development",
+        id: "sylvac-s65",
+        category: "Sylvac · Optical Measurement System",
+        title: "Sylvac SCAN S65 — Industrialization",
         description:
-          "Mechanical concept development of a localized sterile surgical environment designed to enable carpal tunnel surgery outside a traditional operating room. The project was carried out during a Master in Microengineering in collaboration with surgeons from CHUV, within an interdisciplinary medical device development program.",
+          "Industrialization work on an optical measurement system for cylindrical parts, covering production readiness and system-level assembly robustness.",
         bullets: [
-          "Concept development: localized sterile environment around the surgical site",
-          "Medical device design: mechanical architecture for a compact micro-surgery station",
-          "Process optimization: reduction of preparation time, waste, and operational costs",
-          "Human-centered design: improving patient comfort while maintaining surgical safety",
-          "Objective: support office-based surgery adoption (already established in Canada, still limited in Switzerland)",
+          "Industrialization support: drawings, assembly considerations, manufacturing constraints",
+          "Reliability mindset: robustness, maintainability, and repeatable builds",
+          "Collaboration with production and quality stakeholders",
         ],
-        tags: [
-          "Medical Device",
-          "Surgical Environment",
-          "Concept Development",
-          "Healthcare Engineering",
-          "ISO 13485",
+        tags: ["Industrialization", "Systems", "Manufacturing", "Documentation"],
+        media: "assets/projects/sylvac-s65.jpg",
+        links: [
+          { label: "Public: SCAN S65", url: "https://www.sylvac.ch/product/optical-measurement-sylvac-scan-s65/" },
+          { label: "Public: Product news", url: "https://www.sylvac.ch/new-product-optical-machine-scan-s65/" },
         ],
-        links: [],
       },
 
       {
-        id: "elios3-rad",
-        category: "Flyability · Elios 3",
-        title: "Elios 3 RAD — Radiation Payload Integration & Validation",
+        id: "sylvac-p25d",
+        category: "Sylvac · Metrology Handtool",
+        title: "High-End Measuring Handtool — Development & Industrialization (P25D Smart)",
         description:
-          "Mechanical integration and productization support for a radiation-sensing payload on an indoor inspection drone. Focus on robust integration, repeatable mounting, and validation aligned with field operations.",
+          "Development and industrialization contributions for a high-precision metrology handtool, focusing on robust mechanics, tight tolerances, and manufacturing documentation.",
         bullets: [
-          "Mechanical integration: packaging, mounting strategy, tolerance stack-up awareness",
-          "Design for reliability: ruggedness, serviceability, and repeatable assembly",
-          "Validation support: ensuring mechanical performance under operational constraints",
+          "Detailed technical drawings for industrialization (tight tolerances, manufacturing constraints)",
+          "Continuous improvement based on field feedback and problem analysis",
+          "Design decisions aligned with assembly repeatability and quality requirements",
         ],
-        tags: ["Integration", "Validation", "Rugged Design", "Field Constraints"],
-        media: "assets/projects/elios3-rad.jpg",
+        tags: ["Precision Mechanics", "Industrialization", "Quality", "DFM"],
+        media: "assets/projects/sylvac-p25d.jpg",
         links: [
-          { label: "Public: Elios 3", url: "https://www.flyability.com/elios-3" },
-          { label: "Public: RAD Payload", url: "https://www.flyability.com/elios-3-rad-payload" },
+          { label: "Public: P25D Smart", url: "https://www.sylvac.ch/product/absolute-digital-measuring-probe-p25d-smart/" },
         ],
       },
 
@@ -105,7 +100,26 @@ window.PORTFOLIO = {
         defaultImage: "1-cleaning.jpg",
         media: "assets/projects/elios3-cleaning/1-cleaning.jpg",
         links: [
-          { label: "Public: Cleaning guidance", url: "https://www.flyability.com/knowledge-base/cleaning-elios" },
+          { label: "Public: Elios 3 UT Payload", url: "https://www.flyability.com/elios-3-ut-payload" },
+        ],
+      },
+
+      {
+        id: "elios3-rad",
+        category: "Flyability · Elios 3",
+        title: "Elios 3 RAD — Radiation Payload Integration & Validation",
+        description:
+          "Mechanical integration and productization support for a radiation-sensing payload on an indoor inspection drone. Focus on robust integration, repeatable mounting, and validation aligned with field operations.",
+        bullets: [
+          "Mechanical integration: packaging, mounting strategy, tolerance stack-up awareness",
+          "Design for reliability: ruggedness, serviceability, and repeatable assembly",
+          "Validation support: ensuring mechanical performance under operational constraints",
+        ],
+        tags: ["Integration", "Validation", "Rugged Design", "Field Constraints"],
+        media: "assets/projects/elios3-rad.jpg",
+        links: [
+          { label: "Public: Elios 3", url: "https://www.flyability.com/elios-3" },
+          { label: "Public: RAD Payload", url: "https://www.flyability.com/elios-3-rad-payload" },
         ],
       },
 
@@ -144,40 +158,26 @@ window.PORTFOLIO = {
       },
 
       {
-        id: "sylvac-p25d",
-        category: "Sylvac · Metrology Handtool",
-        title: "High-End Measuring Handtool — Development & Industrialization (P25D Smart)",
+        id: "micro-surgery-room",
+        category: "Master in Microengineering · CHUV Collaboration",
+        title: "Micro-Surgery Room — Office Surgery Concept Development",
         description:
-          "Development and industrialization contributions for a high-precision metrology handtool, focusing on robust mechanics, tight tolerances, and manufacturing documentation.",
+          "Mechanical concept development of a localized sterile surgical environment designed to enable carpal tunnel surgery outside a traditional operating room. The project was carried out during a Master in Microengineering in collaboration with surgeons from CHUV, within an interdisciplinary medical device development program.",
         bullets: [
-          "Detailed technical drawings for industrialization (tight tolerances, manufacturing constraints)",
-          "Continuous improvement based on field feedback and problem analysis",
-          "Design decisions aligned with assembly repeatability and quality requirements",
+          "Concept development: localized sterile environment around the surgical site",
+          "Medical device design: mechanical architecture for a compact micro-surgery station",
+          "Process optimization: reduction of preparation time, waste, and operational costs",
+          "Human-centered design: improving patient comfort while maintaining surgical safety",
+          "Objective: support office-based surgery adoption (already established in Canada, still limited in Switzerland)",
         ],
-        tags: ["Precision Mechanics", "Industrialization", "Quality", "DFM"],
-        media: "assets/projects/sylvac-p25d.jpg",
-        links: [
-          { label: "Public: P25D Smart", url: "https://www.sylvac.ch/product/absolute-digital-measuring-probe-p25d-smart/" },
+        tags: [
+          "Medical Device",
+          "Surgical Environment",
+          "Concept Development",
+          "Healthcare Engineering",
+          "ISO 13485",
         ],
-      },
-
-      {
-        id: "sylvac-s65",
-        category: "Sylvac · Optical Measurement System",
-        title: "Sylvac SCAN S65 — Industrialization",
-        description:
-          "Industrialization work on an optical measurement system for cylindrical parts, covering production readiness and system-level assembly robustness.",
-        bullets: [
-          "Industrialization support: drawings, assembly considerations, manufacturing constraints",
-          "Reliability mindset: robustness, maintainability, and repeatable builds",
-          "Collaboration with production and quality stakeholders",
-        ],
-        tags: ["Industrialization", "Systems", "Manufacturing", "Documentation"],
-        media: "assets/projects/sylvac-s65.jpg",
-        links: [
-          { label: "Public: SCAN S65", url: "https://www.sylvac.ch/product/optical-measurement-sylvac-scan-s65/" },
-          { label: "Public: Product news", url: "https://www.sylvac.ch/new-product-optical-machine-scan-s65/" },
-        ],
+        links: [],
       },
     ],
   },
@@ -216,6 +216,58 @@ window.PORTFOLIO = {
       "Design for manufacturing and injection molding optimization",
       "Tight-tolerance drawings and industrialization documentation",
       "Cross-disciplinary integration with electronics/software teams",
+    ],
+  },
+
+  prototyping: {
+    note:
+      "Tool descriptions are summarized from official manufacturer pages to reflect core capabilities used in prototyping workflows.",
+    items: [
+      {
+        id: "cnc",
+        title: "CNC",
+        tool: "Snapmaker Artisan",
+        image: "assets/tools/cnc/snapmaker-artisan-cnc.jpg",
+        description:
+          "Snapmaker describes the Artisan as a 3-in-1 platform with a dedicated 200W CNC module designed for smooth and precise carving/cutting. The rigid all-metal structure and industrial-grade linear modules are positioned for stable desktop machining on woods, plastics, and selected soft metals.",
+        source: { label: "Snapmaker Artisan (official)", url: "https://www.snapmaker.com/snapmaker-artisan" },
+      },
+      {
+        id: "fdm-artisan",
+        title: "FDM Printing",
+        tool: "Snapmaker Artisan 3D Printing",
+        image: "assets/tools/fdm/snapmaker-artisan-3dprint.jpg",
+        description:
+          "Snapmaker Artisan integrates dual-extrusion FDM in its 3-in-1 platform, enabling dual-color and dual-material prints with quick-swap toolheads and a rigid all-metal structure suited for practical prototyping iterations.",
+        source: { label: "Snapmaker Artisan (official)", url: "https://www.snapmaker.com/snapmaker-artisan" },
+      },
+      {
+        id: "fdm-x1c",
+        title: "FDM Printing",
+        tool: "Bambu Lab X1C",
+        image: "assets/tools/fdm/bambulab-x1c.svg",
+        description:
+          "Bambu Lab X1C is a high-speed CoreXY FDM platform with automation features such as lidar-assisted calibration and dual auto bed leveling, supporting faster print cycles and reliable iteration for engineering-grade prototypes.",
+        source: { label: "Bambu Lab X1 Series (official)", url: "https://bambulab.com/en/x1" },
+      },
+      {
+        id: "sla",
+        title: "SLA 3D Printing",
+        tool: "Photon P1",
+        image: "assets/tools/sla/anycubic-photon.svg",
+        description:
+          "The Anycubic Photon line is positioned for high-detail resin printing. Current Photon Mono specifications highlight fine XY pixel resolution, monochrome LCD exposure, and support for standard, ABS-like, and water-washable resins to produce small precise components and visual prototypes.",
+        source: { label: "Anycubic Photon Mono (official)", url: "https://store.anycubic.com/products/photon-mono-4" },
+      },
+      {
+        id: "soldering",
+        title: "Soldering",
+        tool: "JBC Soldering Station",
+        image: "assets/tools/soldering/jbc-station.svg",
+        description:
+          "JBC positions its soldering stations around tight temperature stability, fast thermal recovery between joints, and intelligent heat management (sleep/idle behavior) to improve joint consistency and extend tip life in electronics prototyping and rework.",
+        source: { label: "JBC Technology (official)", url: "https://www.jbctools.com/most-efficient-soldering-system.html" },
+      },
     ],
   },
 

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Paul Bosmans - Contact</title>
+  <meta name="description" content="Contact page for Paul Bosmans." />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/android-chrome-512x512.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav-inner">
+      <div class="site-nav-links">
+        <a class="site-nav-link" href="index.html">Portfolio</a>
+        <a class="site-nav-link" href="prototyping.html">Prototyping Capacity</a>
+        <a class="site-nav-link active" href="contact.html" aria-current="page">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <main class="content" id="top">
+      <section class="card section">
+        <div class="contact-layout" id="contactLayout">
+          <div class="contact-left">
+            <p class="contact-kicker">Let us build something useful</p>
+            <div class="actions" id="contactPageActions"></div>
+          </div>
+        </div>
+
+        <section class="contact-form-card" aria-labelledby="contactFormTitle">
+          <div class="section-head">
+            <h2 id="contactFormTitle">Send a Message</h2>
+            <p>Quick intro and project needs</p>
+          </div>
+
+          <form id="contactForm" class="contact-form" action="https://formsubmit.co/paul.bosmans@proton.me" method="POST">
+            <input type="hidden" name="_subject" value="New portfolio contact request" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_autoresponse" value="Thanks for your message. We received it and will come back to you ASAP." />
+            <label class="contact-field">
+              <span>Name</span>
+              <input type="text" name="name" required placeholder="Your name" />
+            </label>
+            <label class="contact-field">
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="you@email.com" />
+            </label>
+            <label class="contact-field contact-field-wide">
+              <span>Subject</span>
+              <input type="text" name="subject" required placeholder="Project, role, or collaboration" />
+            </label>
+            <label class="contact-field contact-field-wide">
+              <span>Message</span>
+              <textarea name="message" rows="5" required placeholder="Tell me what you are building, timeline, and expectations."></textarea>
+            </label>
+            <div class="contact-form-actions">
+              <button type="submit" class="btn primary">Send Message</button>
+            </div>
+          </form>
+        </section>
+
+        <footer class="footer">© <span id="year"></span> Paul Bosmans · Portfolio</footer>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
