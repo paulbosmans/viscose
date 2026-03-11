@@ -379,6 +379,7 @@ code{font-family:var(--mono); font-size:.95em}
   height:100%;
   object-fit: cover;
   display:block;
+  border-radius: 18px;
 }
 
 .proto-tool-media-fallback{
@@ -689,7 +690,7 @@ code{font-family:var(--mono); font-size:.95em}
 }
 
 .project-company-logo{
-  height: 24px;
+  height: 30px;
   width: auto;
   object-fit: contain;
   display:block;
@@ -745,14 +746,16 @@ code{font-family:var(--mono); font-size:.95em}
   justify-content:center;
   position: relative;
   padding: 8px;
+  clip-path: inset(0 round 16px);
 }
 .project-media img{
   width:100%;
   height:100%;
   object-fit:contain;
   display:block;
-  background: #fff;
+  background: transparent;
   cursor: zoom-in;
+  border-radius: 18px;
 }
 
 .project-media .pc-video{
@@ -761,11 +764,12 @@ code{font-family:var(--mono); font-size:.95em}
   object-fit:contain;
   display:block;
   background: #000;
+  border-radius: 18px;
 }
 
 .project-media.contain-image img{
   object-fit: contain;
-  background: #ffffff;
+  background: transparent;
   padding: 8px;
 }
 .media-fallback{

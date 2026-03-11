@@ -31,6 +31,7 @@ window.PORTFOLIO = {
       {
         id: "wip-product",
         category: "Personal Product · Work in Progress",
+        logo: "assets/logos/cruxxle.png",
         title: "Modular Training Device (Work in Progress)",
         description:
           "Development of a modular physical training device designed to improve hand dexterity, grip strength, and fine motor control. The project explores new approaches to physical interaction and skill training through a compact and versatile mechanical system. The device is intended for multiple applications including climbing training, rehabilitation exercises, and general hand coordination development. The work focuses on creating a robust and intuitive object capable of supporting repetitive use while remaining adaptable to different training scenarios.",
@@ -160,6 +161,7 @@ window.PORTFOLIO = {
       {
         id: "micro-surgery-room",
         category: "Master in Microengineering · CHUV Collaboration",
+        logo: "assets/logos/HES.png",
         title: "Micro-Surgery Room — Office Surgery Concept Development",
         description:
           "Mechanical concept development of a localized sterile surgical environment designed to enable carpal tunnel surgery outside a traditional operating room. The project was carried out during a Master in Microengineering in collaboration with surgeons from CHUV, within an interdisciplinary medical device development program.",

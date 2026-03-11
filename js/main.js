@@ -69,7 +69,7 @@
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
-    const companyLogoPath = companySlug ? `assets/logos/${companySlug}.png` : "";
+    const companyLogoPath = p.logo || (companySlug ? `assets/logos/${companySlug}.png` : "");
     const companyLogo = companyLogoPath
       ? `<img class="project-company-logo" src="${escapeHtml(companyLogoPath)}" alt="${escapeHtml(company)} logo" onerror="this.style.display='none';" />`
       : "";
